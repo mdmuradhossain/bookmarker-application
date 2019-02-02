@@ -12,6 +12,19 @@ function saveBookMark(e){
         url: siteUrl
     }
     // Local Storage
-    
+    if(localStorage.getItem('bookmarks')===null){
+        //Init Array
+        var bookmarks = [];
+        bookmarks.push(bookmark);
+        // set to localStorage 
+        localStorage.setItem('bookmarks',JSON.stringify(bookmarks));
+    }else{
+        //Get bookmarks from local Storage
+        var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+        //Add bookmark to array
+        bookmarks.push(bookmark);
+        //Re-set back to local Storage
+        localStorage.setItem('bookmarks',JSON.stringify(bookmarks));
+    }
     e.preventDefault();
 }
